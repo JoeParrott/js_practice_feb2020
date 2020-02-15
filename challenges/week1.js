@@ -1,34 +1,49 @@
 function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
-  // Add your code here!
+  let caps = word.charAt(0).toUpperCase();
+  let rem = word.slice(1);
+  return caps + rem;
 }
 
 function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
   if (lastName === undefined) throw new Error("lastName is required");
-  // Add your code here!
+  let foreName = firstName.charAt(0).toUpperCase();
+  let surName = lastName.charAt(0).toUpperCase();
+  return foreName + "." + surName
 }
 
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  // Add your code here!
+  return originalPrice * ((100+vatRate)/100)
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  // Add your code here!
+  return originalPrice * (reduction / 100)
 }
 
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
-  // Add your code here!
+  if ((str.length % 2) == 0) {
+  let evens = str.charAt((str.length-1) / 2)
+  let even = str.charAt(((str.length-1) / 2) + 1)
+  return evens + even
+  }
+  else{
+  return str.charAt((str.length -1) / 2)
+  }
 }
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
-  // Add your code here!
+  let reversed = "";
+  for ( i = word.length - 1; i >= 0; i--) {
+      reversed += word[i];
+  }
+  return reversed
 }
 
 function reverseAllWords(words) {
