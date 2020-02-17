@@ -16,13 +16,15 @@ function generateInitials(firstName, lastName) {
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  return originalPrice * ((100+vatRate)/100)
+  let  newPrice = originalPrice * ((100+vatRate)/100);
+  return (newPrice.toFixed(2) * 1)
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  return originalPrice * (reduction / 100)
+  let newValue = originalPrice * ((100 - reduction) / 100);
+  return (newValue.toFixed(2) * 1)
 }
 
 function getMiddleCharacter(str) {
@@ -62,9 +64,9 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  let count = 0; // poor Pedro and his toaster
+  let count = 0;
   for(i=0; i < users.length; i++) {
-      if(users.type === "Linux") {
+      if(users[i].type === "Linux") {
         count++;
       }
   }
@@ -73,12 +75,40 @@ function countLinuxUsers(users) {
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+  // sum array into obj
+    let total = scores.reduce((a, b) => a + b, 0);
+    // divide obj by array.length
+    let mean = total / scores.length;
+  // if 2nd obj = int, return
+    if(Number.isInteger(mean)) {
+        return (mean.toFixed(0) *1) ;
+  }
+   // else return to 2dec.places
+      else {
+        return (mean.toFixed(2) *1);
+  }
 }
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  // Add your code here!
+  // if n/3 and n/5 are true return FizzBuzz
+  // else if n/3 is true, fizz
+  // else if n/5 is true, buzz
+  // else return original number
+  let nOverThree = n / 3;
+  let nOverFive = n / 5;
+  if ((Number.isInteger(nOverThree)) && (Number.isInteger(nOverFive))) {
+    return "fizzbuzz";
+  }
+  else if(Number.isInteger(nOverThree)) {
+    return "fizz";
+  }
+  else if(Number.isInteger(nOverFive)) {
+    return "buzz";
+  }
+  else {
+    return n;
+  }
 }
 
 module.exports = {
