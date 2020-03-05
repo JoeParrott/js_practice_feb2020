@@ -15,7 +15,7 @@ function isFromManchester(person) {
 
 function getBusNumbers(people) {
   if (people === undefined) throw new Error("people is required");
-  return Math.ceil(people/40)
+  return Math.ceil(people / 40)
 }
 
 function countSheep(arr) {
@@ -25,7 +25,7 @@ function countSheep(arr) {
 
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
-  if (Number.isInteger(person.address.postCode[1]*1)) {
+  if (Number.isInteger(person.address.postCode[1] * 1)) {
     if (person.address.postCode[0] === "M") {
       return true
     }
