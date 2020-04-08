@@ -1,19 +1,12 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === n) {
-      if (nums[nums[i]] === nums[nums.length]) {
-        return null
-      }
-      else {
-        return nums[i + 1]
-      }
-    }
-    else if (nums[nums[i]] === nums[nums.length]) {
-      return null
+  for (x = 0; x < nums.length; x++) {
+    if (nums[x] === n && nums[x] !== nums[nums.length - 1]) {
+      return nums[x + 1];
     }
   }
+  return null
 };
 
 const count1sand0s = str => {
@@ -46,6 +39,9 @@ const sumArrays = arrs => {
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  if (arr.length < 2) {
+    return arr
+  }
   let a = arr.pop();
   let b = arr.slice(1, arr.length);
   let c = arr.shift();
@@ -58,19 +54,41 @@ const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
   let a = Object.entries(haystack);
-  let c = searchTerm.toLowerCase();
-  let b = a.find(x => x === c).toLowerCase();
-  if (b === c) {
-    return true;
-  }
-  else {
-    return false
-  }
+  let b = searchTerm.toLowerCase();
+  let c = [].concat.apply([], a);
+  let d = c.toString().toLowerCase();
+  let e = d.includes(b)
+  return e;
 };
 
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  let a = str.toLowerCase().replace(/[^a-z ]/g, '').split(' ');
+  let b = a.map((x) =>
+    [x, 1]);
+  let c = b.sort();
+  let storage = 1;
+  do {
+    for (i = 0; i < c.length - 1; i++) {
+      if (c[i][0] === c[i + 1][0]) {
+        c[i + 1][1] = c[i][1] + c[i + 1][1];
+        c.splice(i, 1);
+      }
+    }
+    for (i = 0; i < c.length - 1; i++) {
+      if (c[i][0] === c[i + 1][0]) {
+        storage = 1;
+      }
+      else {
+        storage = 0;
+      }
+    }
+  }
+  while (storage === 1)
+  let d = Object.assign(...c.map(
+    ([key, val]) => ({ [key]: val })
+  ))
+  return d;
 };
 
 module.exports = {
