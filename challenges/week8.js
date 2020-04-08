@@ -64,31 +64,17 @@ const findNeedle = (haystack, searchTerm) => {
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
   let a = str.toLowerCase().replace(/[^a-z ]/g, '').split(' ');
-  let b = a.map((x) =>
-    [x, 1]);
-  let c = b.sort();
-  let storage = 1;
-  do {
-    for (i = 0; i < c.length - 1; i++) {
-      if (c[i][0] === c[i + 1][0]) {
-        c[i + 1][1] = c[i][1] + c[i + 1][1];
-        c.splice(i, 1);
-      }
+  let b = {};
+  for (i = 0; i < a.length; i++) {
+    const word = a[i];
+    if (b[word] === undefined) {
+      b[word] = 1;
     }
-    for (i = 0; i < c.length - 1; i++) {
-      if (c[i][0] === c[i + 1][0]) {
-        storage = 1;
-      }
-      else {
-        storage = 0;
-      }
+    else {
+      b[word] += 1;
     }
   }
-  while (storage === 1)
-  let d = Object.assign(...c.map(
-    ([key, val]) => ({ [key]: val })
-  ))
-  return d;
+  return b
 };
 
 module.exports = {
