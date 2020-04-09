@@ -23,18 +23,12 @@ const count1sand0s = str => {
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
-  let a = n.toString().split('');
-  let b = [];
-  for (i = a.length - 1; i > -1; i--) {
-    b.push(a[i])
-  }
-  return Number(b.join(''))
+  return Number((n.toString().split('').reverse()).join('')); 
 };
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  let a = [].concat.apply([], arrs).reduce((a, b) => a + b, 0);
-  return a;
+  return ([].concat.apply([], arrs).reduce((a, b) => a + b, 0));
 };
 
 const arrShift = arr => {
@@ -42,23 +36,14 @@ const arrShift = arr => {
   if (arr.length < 2) {
     return arr
   }
-  let a = arr.pop();
-  let b = arr.slice(1, arr.length);
-  let c = arr.shift();
-  let aA = [a];
-  let d = aA.concat(b, c);
-  return d
+  return [arr.pop()].concat((arr.slice(1, arr.length)), arr.shift());
 };
+
 
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  let a = Object.entries(haystack);
-  let b = searchTerm.toLowerCase();
-  let c = [].concat.apply([], a);
-  let d = c.toString().toLowerCase();
-  let e = d.includes(b)
-  return e;
+  return ([].concat.apply([], Object.entries(haystack)).toString().toLowerCase()).includes(searchTerm.toLowerCase());
 };
 
 const getWordFrequencies = str => {
