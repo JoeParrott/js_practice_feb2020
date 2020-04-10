@@ -6,6 +6,13 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  let totalSum = 0;
+  arr.forEach((n) => {
+    if (n % 3 === 0 || n % 5 === 0) {
+      totalSum += n;
+    }
+  })
+  return totalSum;
 };
 
 /**
@@ -15,6 +22,17 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  let arr = str.toLowerCase().split('');
+  if (arr.length === arr.filter((char) => {
+    if (char === "c" || char === "t" || char === "a" || char === "g") {
+      return true;
+    }
+  }).length) {
+    return true
+  }
+  else {
+    return false
+  }
 };
 
 /**
@@ -22,9 +40,28 @@ const isValidDNA = str => {
  * @param {String} str
  * @returns {String}
  */
+
+const getComplementaryDNA = str => {
+  if (str === undefined) throw new Error("string is required");
+  let s = str.toUpperCase().split('');
+  return s.map((x) => {
+    if (x === "T") { return "A" }
+    if (x === "A") { return "T" }
+    if (x === "C") { return "G" }
+    if (x === "G") { return "C" }
+  }).join('');
+}
+
+/*
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
-};
+  let s = str.toUpperCase().split('');
+  let t = s.filter((i) => { if (i === "T") return true });
+  let a = s.filter((i) => { if (i === "A") return true });
+  let c = s.filter((i) => { if (i === "C") return true });
+  let g = s.filter((i) => { if (i === "G") return true });
+  return ("TA".repeat(Math.min(t.length, a.length)) + "CG".repeat(Math.min(c.length, g.length)));
+}; */
 
 /**
  * This function should receive a number and return true/false depending on whether it is a prime number or not. A prime number is a number that can only be divided evenly by 1 and itself (for example, 7)
@@ -33,6 +70,8 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (n.isNaN(true)) throw new Error("number is required");
+  
 };
 
 /**
