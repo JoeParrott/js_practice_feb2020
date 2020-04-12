@@ -70,8 +70,14 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
-  if (n.isNaN(true)) throw new Error("number is required");
-  
+  if (Number.isInteger(n) === false) { return false };
+  let d = n - 1;
+  while (d > 1) {
+    if ((n % d) == 0) return false;
+    d--;
+  }
+  return true;
+
 };
 
 /**
@@ -88,6 +94,10 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  if (fill.indexOf(",") !== -1) throw new Error("Please do not use commas in fill");
+  let arr = ((fill + ',').repeat(n)).split(',');
+  arr.length = n
+  return arr.map(() => { return arr });
 };
 
 /**
@@ -105,6 +115,16 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  let count = 0;
+  for (i = 0; i < staff.length; i++) {
+    for (x = 0; x < staff[i].rota.length; x++) {
+      if (staff[i].rota[x] === day) {
+        count++
+      }
+    }
+  }
+  if (count >= 3) { return true }
+  else { return false }
 };
 
 module.exports = {
